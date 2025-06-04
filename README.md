@@ -2,6 +2,7 @@ Tweet Analiz Otomatı
 
 Bu proje, kullanıcıdan alınan bir tweet bağlantısını analiz ederek Türkçe kısa özetini ve duygu durumunu (Olumlu, Olumsuz, Nötr) belirleyen bir React tabanlı web uygulamasıdır. Analiz sonuçları hem arayüzde görüntülenir hem de Airtable üzerinden bir tabloya kaydedilir.
 
+
 Özellikler:
 
 Tweet bağlantısından otomatik olarak tweet ID’sini ayrıştırır
@@ -16,6 +17,7 @@ Airtable API ile analiz sonuçlarını tabloya kaydeder
 
 Eksik veya hatalı durumlarda kullanıcıya açıklayıcı uyarılar sunar
 
+
 Kullanılan Teknolojiler:
 
 React (Frontend)
@@ -26,24 +28,35 @@ Airtable API (Veri kaydı ve saklama)
 
 Dotenv (.env dosyası ile çevresel değişken yönetimi)
 
+
 Kurulum ve Çalıştırma:
 
 Projeyi klonlayın:
+
 git clone <repo-url>
+
 cd tweet-analyzer
+
 
 Bağımlılıkları yükleyin:
 npm install
 
+
 .env dosyasını oluşturun:
 Proje kök dizininde .env adında bir dosya oluşturup aşağıdaki değişkenleri girin:
 REACT_APP_GEMINI_API_KEY=...your Gemini API key...
+
 REACT_APP_AIRTABLE_TOKEN=...your Airtable API token...
+
 REACT_APP_AIRTABLE_BASE_ID=...your Airtable Base ID...
 
+
 Uygulamayı başlatın:
+
 npm start
+
 Ardından http://localhost:3000 adresinden uygulamayı görüntüleyebilirsiniz.
+
 
 Kullanım:
 
@@ -53,6 +66,7 @@ Uygulama başlatıldıktan sonra sahte tweet seçimi yapılabilir ya da elle bir
 
 Sonuç, özet ve duygu durumu bilgileriyle birlikte ekranda gösterilir ve aynı zamanda Airtable tablosuna kaydedilir.
 
+
 Geliştirici Notları:
 
 Tweet içeriği yalnızca önceden tanımlanmış sahte veritabanındaki ID'lerle eşleştirilir. Gerçek içerik alınmaz.
@@ -60,6 +74,7 @@ Tweet içeriği yalnızca önceden tanımlanmış sahte veritabanındaki ID'lerl
 Airtable’daki tablo ismi varsayılan olarak “Tweet Analysis” olarak ayarlanmıştır. Gerekirse koddan değiştirilebilir.
 
 .env dosyası .gitignore içine dahil edilmelidir.
+
 
 Ekran Görüntüsü:
 
