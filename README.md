@@ -64,10 +64,9 @@ Airtable’daki tablo ismi varsayılan olarak “Tweet Analysis” olarak ayarla
 Ekran Görüntüsü:
 
 ![Ekran görüntüsü 2025-06-04 180444](https://github.com/user-attachments/assets/86bb8d16-eb57-427f-841d-1a184bf0aa46)
-![Ekran görüntüsü 2025-06-04 180533](https://github.com/user-attachments/assets/8cf94c1d-a6c4-4c21-acfb-85057b3e7a17)
-![Ekran görüntüsü 2025-06-04 180804](https://github.com/user-attachments/assets/e1d7942f-4277-4302-9ca5-eca7f5758978)
-![Ekran görüntüsü 2025-06-04 180831](https://github.com/user-attachments/assets/4279c572-7149-4f3b-8792-8789a277fa2b)
 ![Ekran görüntüsü 2025-06-04 180513](https://github.com/user-attachments/assets/7dae8938-afe2-412f-b9b5-fed94dc60611)
+![Ekran görüntüsü 2025-06-04 180533](https://github.com/user-attachments/assets/8cf94c1d-a6c4-4c21-acfb-85057b3e7a17)
+![Ekran görüntüsü 2025-06-04 180831](https://github.com/user-attachments/assets/4279c572-7149-4f3b-8792-8789a277fa2b)
 
 
 Lisans:
