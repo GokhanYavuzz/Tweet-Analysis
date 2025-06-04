@@ -1,70 +1,75 @@
-# Getting Started with Create React App
+Tweet Analiz Otomatı
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Bu proje, kullanıcıdan alınan bir tweet bağlantısını analiz ederek Türkçe kısa özetini ve duygu durumunu (Olumlu, Olumsuz, Nötr) belirleyen bir React tabanlı web uygulamasıdır. Analiz sonuçları hem arayüzde görüntülenir hem de Airtable üzerinden bir tabloya kaydedilir.
 
-## Available Scripts
+Özellikler:
 
-In the project directory, you can run:
+Tweet bağlantısından otomatik olarak tweet ID’sini ayrıştırır
 
-### `npm start`
+Belirli ID’ler için sahte içerik veritabanı üzerinden içerik eşleştirir
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Google Gemini API aracılığıyla özetleme ve duygu analizi gerçekleştirir
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Sonuçları kullanıcı arayüzünde sade bir kart halinde gösterir
 
-### `npm test`
+Airtable API ile analiz sonuçlarını tabloya kaydeder
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Eksik veya hatalı durumlarda kullanıcıya açıklayıcı uyarılar sunar
 
-### `npm run build`
+Kullanılan Teknolojiler:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+React (Frontend)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Google Gemini API (Doğal dil işleme)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Airtable API (Veri kaydı ve saklama)
 
-### `npm run eject`
+Dotenv (.env dosyası ile çevresel değişken yönetimi)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Kurulum ve Çalıştırma:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Projeyi klonlayın:
+git clone <repo-url>
+cd tweet-analyzer
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Bağımlılıkları yükleyin:
+npm install
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+.env dosyasını oluşturun:
+Proje kök dizininde .env adında bir dosya oluşturup aşağıdaki değişkenleri girin:
+REACT_APP_GEMINI_API_KEY=...your Gemini API key...
+REACT_APP_AIRTABLE_TOKEN=...your Airtable API token...
+REACT_APP_AIRTABLE_BASE_ID=...your Airtable Base ID...
 
-## Learn More
+Uygulamayı başlatın:
+npm start
+Ardından http://localhost:3000 adresinden uygulamayı görüntüleyebilirsiniz.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Kullanım:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Uygulama başlatıldıktan sonra sahte tweet seçimi yapılabilir ya da elle bir tweet bağlantısı girilebilir.
 
-### Code Splitting
+“Analiz Et” butonuna tıklandığında, içerik Google Gemini API tarafından analiz edilir.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Sonuç, özet ve duygu durumu bilgileriyle birlikte ekranda gösterilir ve aynı zamanda Airtable tablosuna kaydedilir.
 
-### Analyzing the Bundle Size
+Geliştirici Notları:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Tweet içeriği yalnızca önceden tanımlanmış sahte veritabanındaki ID'lerle eşleştirilir. Gerçek içerik alınmaz.
 
-### Making a Progressive Web App
+Airtable’daki tablo ismi varsayılan olarak “Tweet Analysis” olarak ayarlanmıştır. Gerekirse koddan değiştirilebilir.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+.env dosyası .gitignore içine dahil edilmelidir.
 
-### Advanced Configuration
+Ekran Görüntüsü:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+![Ekran görüntüsü 2025-06-04 180444](https://github.com/user-attachments/assets/86bb8d16-eb57-427f-841d-1a184bf0aa46)
+![Ekran görüntüsü 2025-06-04 180533](https://github.com/user-attachments/assets/8cf94c1d-a6c4-4c21-acfb-85057b3e7a17)
+![Ekran görüntüsü 2025-06-04 180804](https://github.com/user-attachments/assets/e1d7942f-4277-4302-9ca5-eca7f5758978)
+![Ekran görüntüsü 2025-06-04 180831](https://github.com/user-attachments/assets/4279c572-7149-4f3b-8792-8789a277fa2b)
+![Ekran görüntüsü 2025-06-04 180513](https://github.com/user-attachments/assets/7dae8938-afe2-412f-b9b5-fed94dc60611)
 
-### Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Lisans:
 
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+MIT
