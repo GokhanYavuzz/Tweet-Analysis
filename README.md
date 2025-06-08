@@ -9,7 +9,7 @@ Analiz sonuçları, **Google Gemini API** kullanılarak alınır ve **Google She
 
 ## 🚀 Özellikler
 
-- 🔗 Tweet bağlantısından Tweet ID’sini otomatik alır  
+- 🔗 Tweet bağlantısından Tweet ID’sini otomatik alır
 - 🧠 Google Gemini API ile:  
   - 1 cümlelik sade Türkçe özet çıkarır  
   - Duygu analizini "Olumlu, Olumsuz, Nötr" olarak sınıflandırır  
@@ -18,9 +18,19 @@ Analiz sonuçları, **Google Gemini API** kullanılarak alınır ve **Google She
 - 🎯 Sahte tweet veritabanı ile simülasyon yapılabilir  
 
 ---
+🔍 Analiz Arayüzü
+
+![Ekran görüntüsü 2025-06-08 135325](https://github.com/user-attachments/assets/85a056a8-825d-42d3-bc03-b4f28ab4d18e)
+
+📄 Google Sheets'e Kayıt Edilen Veri
+
+![Ekran görüntüsü 2025-06-08 135353](https://github.com/user-attachments/assets/f3fceac1-0545-48d3-8145-372ff08f6b24)
+
 
 ## 📁 Proje Yapısı
+
 tweet-analyzer/
+
 ├── public/ # HTML ve statik dosyalar
 
 ├── src/ # React bileşenleri ve stil dosyaları
