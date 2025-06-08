@@ -100,6 +100,7 @@ Webhook URL’nizi sadece bu uygulamayla paylaşın
 
 🔄 Diğer Branch'lar
 main = Google Sheets + Gemini API 🌐
+
 master =	Airtable + Gemini API 📦
 
 🧑‍💻 Geliştirici
