@@ -1,70 +1,103 @@
-# Tweet Analiz Otomatı
+# 🧠 Tweet Analiz Otomatı – Google Sheets Sürümü (main branch)
 
-Bu proje, girilen bir tweet linkini analiz ederek Türkçe özetini ve duygu durumunu (Olumlu, Olumsuz, Nötr) otomatik olarak çıkaran bir React tabanlı web uygulamasıdır. Analiz sonuçları hem ekranda gösterilir hem de Airtable tablosuna kaydedilir.
+Bu proje, kullanıcıdan alınan bir Tweet bağlantısının özetini çıkaran ve duygu analizini yapan bir React uygulamasıdır.  
+Analiz sonuçları, **Google Gemini API** kullanılarak alınır ve **Google Sheets** tablosuna kaydedilir.
 
-## Özellikler
+---
 
-- Tweet linkinden tweet ID'sini otomatik tespit eder.
-- Sahte tweet veritabanı üzerinden içerik simülasyonu yapar.
-- Google Gemini API ile tweetin özetini ve duygu analizini alır.
-- Sonuçları kullanıcıya sade bir kartta gösterir.
-- Analiz edilen verileri Airtable'a kaydeder.
-- Hatalar ve eksik ayarlar için kullanıcıya bilgilendirici uyarılar sunar.
+## 🚀 Özellikler
 
-## Kullanılan Teknolojiler
+- 🔗 Tweet bağlantısından Tweet ID’sini otomatik alır
+- 🧠 Google Gemini API ile:
+  - 1 cümlelik sade Türkçe özet çıkarır
+  - Duygu analizini "Olumlu, Olumsuz, Nötr" olarak sınıflandırır
+- 📄 Google Sheets'e Apps Script üzerinden veri gönderimi sağlar
+- 📊 Kullanıcıya analiz sonuçlarını sade bir kart görünümünde gösterir
+- 🎯 Sahte tweet veritabanı ile simülasyon yapılabilir
 
-- React (frontend)
-- Google Gemini API (doğal dil işleme için)
-- Airtable API (veri saklama)
-- .env ile gizli anahtar yönetimi
+---
 
-## Kurulum ve Çalıştırma
+## 📁 Proje Yapısı
 
-1. **Depoyu klonlayın:**
-   ```bash
-   git clone <repo-url>
-   cd tweet-analyzer
-   ```
-2. **Bağımlılıkları yükleyin:**
-   ```bash
-   npm install
-   ```
-3. **.env dosyasını doldurun:**
-   Proje kök dizinindeki `.env` dosyasını aşağıdaki gibi doldurun:
-   ```env
-   REACT_APP_GEMINI_API_KEY=GoogleGeminiAPIKey'iniz
-   REACT_APP_AIRTABLE_TOKEN=AirtableAPIToken'ınız
-   REACT_APP_AIRTABLE_BASE_ID=AirtableBaseID'niz
-   ```
-4. **Uygulamayı başlatın:**
-   ```bash
-   npm start
-   ```
-   Ardından [http://localhost:3000](http://localhost:3000) adresinde uygulamayı görüntüleyebilirsiniz.
+tweet-analyzer/
+├── public/ # HTML ve statik dosyalar
+├── src/ # React bileşenleri ve stil dosyaları
+│ ├── App.js # Ana uygulama mantığı
+│ └── ... # Diğer destekleyici dosyalar
+├── .env # API anahtarlarını içeren gizli dosya
+├── README.md # Proje dokümantasyonu
+├── package.json # Bağımlılık ve script tanımları
+└── .gitignore # Git tarafından takip edilmeyen dosyalar
 
-## Kullanım
+---
 
-1. Açılan ekranda bir sahte tweet seçin veya tweet linkini girin.
-2. "Analiz Et" butonuna tıklayın.
-3. Tweetin özeti ve duygu analizi birkaç saniye içinde ekranda görüntülenecek.
-4. Sonuçlar otomatik olarak Airtable tablonuza kaydedilir.
+## 🔧 Kurulum ve Çalıştırma
 
-## .env Açıklamaları
+### 1. Projeyi klonla
 
-- `REACT_APP_GEMINI_API_KEY`: Google Gemini API anahtarınız.
-- `REACT_APP_AIRTABLE_TOKEN`: Airtable API erişim token'ınız.
-- `REACT_APP_AIRTABLE_BASE_ID`: Airtable Base ID'niz.
+git clone https://github.com/GokhanYavuzz/Tweet-Analysis.git
+cd Tweet-Analysis
+git checkout main
 
-> Uygulama, gerçek tweet içeriği yerine örnek bir tweet veritabanı kullanır. Google Gemini API ve Airtable ile entegrasyon için kendi anahtarlarınızı girmeniz gerekir.
+2. Gerekli paketleri yükle
+npm install
 
-## Örnek Ekran Görüntüsü
+3. .env dosyasını oluştur
+Ana dizinde .env dosyası oluşturup aşağıdaki bilgileri doldur:
 
-![Ekran Görüntüsü](docs/screenshot.png)
+REACT_APP_GEMINI_API_KEY=your_gemini_api_key
+REACT_APP_WEBHOOK_URL=https://script.google.com/macros/s/your_webhook_url/exec
 
-## Geliştirici Notları
-- Tweet içeriği bulunamazsa "Bu tweetin içeriği bilinmiyor." mesajı döner.
-- API anahtarları eksikse uygulama çalışmaz ve uyarı verir.
-- Airtable tablosu adı "Tweet Analysis" olarak hardcoded'dur, gerekirse koddan değiştirilebilir.
 
-## Lisans
-MIT
+4. Geliştirme sunucusunu başlat
+npm start
+
+
+📝 Webhook Kurulumu (Google Apps Script)
+Bu proje, analiz sonuçlarını Google Sheets'e kaydetmek için bir webhook URL’si kullanır.
+
+Bunun için aşağıdaki adımları izleyin:
+
+Google Sheets'te boş bir tablo oluştur
+Menüden Uzantılar → Apps Komut Dosyası seç
+Aşağıdaki kodu yapıştır:
+
+function doGet(e) {
+  const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Sayfa1");
+  sheet.appendRow([
+    e.parameter.username,
+    e.parameter.tweet,
+    e.parameter.summary,
+    e.parameter.sentiment,
+    new Date().toLocaleString("tr-TR")
+  ]);
+  
+  return ContentService
+    .createTextOutput(JSON.stringify({ status: 'success' }))
+    .setMimeType(ContentService.MimeType.JSON)
+    .setHeaders({
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET,POST,OPTIONS',
+      'Access-Control-Allow-Headers': 'Content-Type'
+    });
+}
+
+Web uygulaması olarak dağıt:
+Tür: Web uygulaması
+Çalıştır: Kendi hesabın olarak
+Erişim: Herkes
+Oluşan Webhook URL'i .env dosyasındaki REACT_APP_WEBHOOK_URL kısmına ekle
+
+🔐 Güvenlik Notu
+.env dosyanız .gitignore içerisinde olmalı, asla GitHub’a yüklenmemeli
+API anahtarlarınızı paylaşmayın
+Webhook URL’nizi sadece uygulamanızla paylaşın
+
+🔄 Diğer Branch
+Branch	Açıklama
+main	Google Sheets + Gemini API 🌐
+master	Airtable + Gemini API 📦
+
+🧑‍💻 Geliştirici
+Geliştiren: @GokhanYavuzz
+
