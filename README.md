@@ -7,18 +7,17 @@ Analiz sonuçları, **Google Gemini API** kullanılarak alınır ve **Google She
 
 ## 🚀 Özellikler
 
-- 🔗 Tweet bağlantısından Tweet ID’sini otomatik alır
-- 🧠 Google Gemini API ile:
-  - 1 cümlelik sade Türkçe özet çıkarır
-  - Duygu analizini "Olumlu, Olumsuz, Nötr" olarak sınıflandırır
-- 📄 Google Sheets'e Apps Script üzerinden veri gönderimi sağlar
-- 📊 Kullanıcıya analiz sonuçlarını sade bir kart görünümünde gösterir
-- 🎯 Sahte tweet veritabanı ile simülasyon yapılabilir
+- 🔗 Tweet bağlantısından Tweet ID’sini otomatik alır  
+- 🧠 Google Gemini API ile:  
+  - 1 cümlelik sade Türkçe özet çıkarır  
+  - Duygu analizini "Olumlu, Olumsuz, Nötr" olarak sınıflandırır  
+- 📄 Google Sheets'e Apps Script üzerinden veri gönderimi sağlar  
+- 📊 Kullanıcıya analiz sonuçlarını sade bir kart görünümünde gösterir  
+- 🎯 Sahte tweet veritabanı ile simülasyon yapılabilir  
 
 ---
 
 ## 📁 Proje Yapısı
-
 tweet-analyzer/
 ├── public/ # HTML ve statik dosyalar
 ├── src/ # React bileşenleri ve stil dosyaları
@@ -29,38 +28,39 @@ tweet-analyzer/
 ├── package.json # Bağımlılık ve script tanımları
 └── .gitignore # Git tarafından takip edilmeyen dosyalar
 
----
-
 ## 🔧 Kurulum ve Çalıştırma
 
 ### 1. Projeyi klonla
 
-git clone https://github.com/GokhanYavuzz/Tweet-Analysis.git
-cd Tweet-Analysis
+git clone https://github.com/GokhanYavuzz/Tweet-Analysis.git  
+cd Tweet-Analysis  
 git checkout main
 
 2. Gerekli paketleri yükle
+
 npm install
 
 3. .env dosyasını oluştur
+   
 Ana dizinde .env dosyası oluşturup aşağıdaki bilgileri doldur:
-
-REACT_APP_GEMINI_API_KEY=your_gemini_api_key
-REACT_APP_WEBHOOK_URL=https://script.google.com/macros/s/your_webhook_url/exec
-
+REACT_APP_GEMINI_API_KEY=your_gemini_api_key  
+REACT_APP_WEBHOOK_URL=https://script.google.com/macros/s/your_webhook_url/exec  
 
 4. Geliştirme sunucusunu başlat
+
 npm start
 
 
 📝 Webhook Kurulumu (Google Apps Script)
-Bu proje, analiz sonuçlarını Google Sheets'e kaydetmek için bir webhook URL’si kullanır.
+Bu proje, analiz sonuçlarını Google Sheets’e kaydetmek için bir webhook URL’si kullanır.
 
-Bunun için aşağıdaki adımları izleyin:
+Adımlar:
+Google Sheets’te boş bir tablo oluştur
 
-Google Sheets'te boş bir tablo oluştur
 Menüden Uzantılar → Apps Komut Dosyası seç
+
 Aşağıdaki kodu yapıştır:
+
 
 function doGet(e) {
   const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Sayfa1");
@@ -71,7 +71,7 @@ function doGet(e) {
     e.parameter.sentiment,
     new Date().toLocaleString("tr-TR")
   ]);
-  
+
   return ContentService
     .createTextOutput(JSON.stringify({ status: 'success' }))
     .setMimeType(ContentService.MimeType.JSON)
@@ -82,21 +82,25 @@ function doGet(e) {
     });
 }
 
-Web uygulaması olarak dağıt:
+Web Uygulaması Olarak Dağıt
 Tür: Web uygulaması
+
 Çalıştır: Kendi hesabın olarak
+
 Erişim: Herkes
-Oluşan Webhook URL'i .env dosyasındaki REACT_APP_WEBHOOK_URL kısmına ekle
+
+Oluşan Webhook URL’sini .env içindeki REACT_APP_WEBHOOK_URL alanına ekle
 
 🔐 Güvenlik Notu
-.env dosyanız .gitignore içerisinde olmalı, asla GitHub’a yüklenmemeli
-API anahtarlarınızı paylaşmayın
-Webhook URL’nizi sadece uygulamanızla paylaşın
+.env dosyanız .gitignore içinde olmalı
 
-🔄 Diğer Branch
-Branch	Açıklama
-main	Google Sheets + Gemini API 🌐
-master	Airtable + Gemini API 📦
+API anahtarlarınızı ve webhook adresinizi asla GitHub’a yüklemeyin
+
+Webhook URL’nizi sadece bu uygulamayla paylaşın
+
+🔄 Diğer Branch'lar
+main = Google Sheets + Gemini API 🌐
+master =	Airtable + Gemini API 📦
 
 🧑‍💻 Geliştirici
 Geliştiren: @GokhanYavuzz
